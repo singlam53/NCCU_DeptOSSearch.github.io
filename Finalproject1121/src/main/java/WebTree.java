@@ -75,36 +75,35 @@ public class WebTree {
 		}
 	}
 
-	private void quickSort(ArrayList<WebNode> lst, int leftbound, int rightbound) {
-		if (leftbound < rightbound) {
+	private void quickSort(ArrayList<WebNode> lst, int left, int right) {
+        if (left < right) {
+            int partitionIndex = partition(lst, left, right);
 
-			double pivot = lst.get(rightbound).nodeScore;
-			for (int i = 0; i < rightbound; i++) {
-				if (lst.get(i).nodeScore < pivot) {
-					for (int j = rightbound - 1; j > leftbound; j--) {
+            quickSort(lst, left, partitionIndex - 1);
+            quickSort(lst, partitionIndex + 1, right);
+        }
+    }
 
-						if (i == j) {
-							swap(lst,rightbound, i);
-							quickSort(lst,leftbound, i - 1);
-							quickSort(lst,i, rightbound);
-							return;
-						}
-						if (lst.get(j).nodeScore > pivot) {
-							swap(lst,i, j);
-							break;
+    private int partition(ArrayList<WebNode> lst, int left, int right) {
+        double pivot = lst.get(right).nodeScore;
+        int i = left - 1;
 
-						}
-					}
-				}
-			}
-		}
-	}
+        for (int j = left; j < right; j++) {
+            if (lst.get(j).nodeScore > pivot) {
+                i++;
 
-	private void swap(ArrayList<WebNode> lst,int aIndex, int bIndex) {
-		WebNode temp = lst.get(aIndex);
-		lst.set(aIndex, lst.get(bIndex));
-		lst.set(bIndex, temp);
-	}
+                WebNode temp = lst.get(i);
+                lst.set(i, lst.get(j));
+                lst.set(j, temp);
+            }
+        }
+
+        WebNode temp = lst.get(i + 1);
+        lst.set(i + 1, lst.get(right));
+        lst.set(right, temp);
+
+        return i + 1;
+    }
 
 	private String repeat(String str, int repeat) {
 		String retVal = "";

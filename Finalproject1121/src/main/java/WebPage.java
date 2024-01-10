@@ -9,17 +9,23 @@ public class WebPage {
 	public String name;
 	public WordCounter counter;
 	public FetchContent crawler;
+	public double plScore;
 	public double score;
+	public ArrayList<String> urls;
+	public boolean isLast = false;
 	private String content;
 	private JSPFetch Jsp;
+	private int runtime = 0;
 
 	public WebPage(String url, String name) throws IOException {
 		this.url = url;
 		this.name = name;
 		this.crawler = new FetchContent(url);
-		this.content=this.crawler.getHtml();
+		this.content = this.crawler.getHtml();
 		this.counter = new WordCounter(content);
-		
+		this.urls = new ArrayList<String>();
+		plScore = 0;
+		score = 0;
 	}
 	public String getName(){
 		return name;
@@ -27,28 +33,40 @@ public class WebPage {
 	public String getUrl() {
 		return url;
 	}
-
-	public void setScore(ArrayList<Keyword> keywords) {
-	    score = 0;
-	    for (Keyword k : keywords) {
-	        score += k.weight * counter.countKeyword(k.name);
-	    }
-
-	    if (score == 0 && !crawler.isTimeO()) {
-	        try {
-	            Jsp = new JSPFetch(url);
-	            this.content = Jsp.getXml();
-	            this.counter = new WordCounter(content);
-
-	            for (Keyword k : keywords) {
-	                score += k.weight * counter.countKeyword(k.name);
-	            }
-	        } catch (FailingHttpStatusCodeException | IOException e) {
-	            System.out.println("An error occurred while processing URL: " + url);
-	            System.out.println("Assigning default score of 1 due to error: " + e.getMessage());
-	            score = 1; 
-	        }
-	    }
+	public ArrayList<String> getChildUrl() {
+		for (String subUrl : crawler.getUrls()) {
+			if (subUrl.isEmpty()) {
+				continue;
+			}
+			urls.add(subUrl);
+		}
+		return urls;
+	}
+	public void setScore(ArrayList<Keyword> keywords)
+			throws FailingHttpStatusCodeException, MalformedURLException, IOException {
+		// YOUR TURN
+//		1. calculate the score of this webPage
+		if (runtime == 0) {
+			score = 0;
+			for (Keyword k : keywords) {
+				score += k.weight * counter.countKeyword(k.name);
+			}
+			if (!isLast) {
+				if (crawler.isJs() || score <= 10) {
+					score = 0;
+					System.out.println(url);
+//			System.out.println(content);
+					Jsp = new JSPFetch(url);
+					this.content = Jsp.getXml();
+					this.counter = new WordCounter(content);
+					for (Keyword k : keywords) {
+						score += k.weight * counter.countKeyword(k.name);
+					}
+				}
+				score += plScore;
+				runtime++;
+			}
+		}
 	}
 
 }
