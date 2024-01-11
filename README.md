@@ -2,7 +2,7 @@
 
 Member: 111306079 徐偉哲、111306009 葉家妤、111306011 陳若庭、111306045 林俊聲
 
-![Untitled](%5BGroup%204%5D%20DeptOS%20ca70bec1afd64d0487cd511e4a9fb402/Untitled.png)
+![image](https://github.com/singlam53/NCCU_DeptOSSearch.github.io/blob/master/Image%20Sources/Deptos.png)
 
 ## About this project
 
@@ -114,16 +114,16 @@ When entering department ‘psychology’
 
 ### System Structure
 
-![**Logic Layer and Object**](%5BGroup%204%5D%20DeptOS%20ca70bec1afd64d0487cd511e4a9fb402/layer.png)
+![image](https://github.com/singlam53/NCCU_DeptOSSearch.github.io/blob/master/Image%20Sources/layer.png)
 
 **Logic Layer and Object**
 
 ### UI Pages
 
-![Searching UI](%5BGroup%204%5D%20DeptOS%20ca70bec1afd64d0487cd511e4a9fb402/searching_UI.png)
+![image](https://github.com/singlam53/NCCU_DeptOSSearch.github.io/blob/master/Image%20Sources/searching%20UI.png)
 
 Searching UI
 
-![Result UI](%5BGroup%204%5D%20DeptOS%20ca70bec1afd64d0487cd511e4a9fb402/Result_UI.png)
+![image](https://github.com/singlam53/NCCU_DeptOSSearch.github.io/blob/master/Image%20Sources/Result%20UI.png)
 
 Result UI
