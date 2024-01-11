@@ -6,8 +6,6 @@ Member: 111306079 徐偉哲、111306009 葉家妤、111306011 陳若庭、111306
 
 ## About this project
 
----
-
 ### **Motive**
 
 The motivation behind this project is that we have observed that when individuals search for the official website of their academic department by using its name as the search term, the search results tend to prioritize department introductions that are intended for high school students.
@@ -31,8 +29,6 @@ Developing a search engine with a specific emphasis on prioritizing official web
 - Make the engine accessible on the public network
 
 ## System Introduction
-
----
 
 ### **“DeptOS”**
 
@@ -60,8 +56,6 @@ When entering department ‘psychology’
 3. OS of related departments
 
 ## System Design
-
----
 
 ### Key Technology
 
